@@ -1,0 +1,16 @@
+jtype: Flow
+with:
+  protocol: grpc
+  port: 51005
+  env:
+    JINA_LOG_LEVEL: debug
+executors:
+  - name: upscaler
+    uses: SwinIRUpscaler
+    py_modules:
+      - executors/swinir/executor.py
+    uses_with:
+      swinir_path: ../SwinIR
+      store_path: dalle.db
+    env:
+      CUDA_VISIBLE_DEVICES: 0  # change this if you have multiple GPU
